@@ -1,0 +1,12 @@
+
+/* Path: src/app/shared/header/header.component.css */
+.navbar {
+  background-color: #333333;
+  overflow: hidden;
+  width: 100%;
+}
+
+.font {
+  color: white;
+  margin-left: 1em;
+}

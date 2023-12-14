@@ -1,0 +1,43 @@
+
+<h1>Cadastro de Estudante</h1>
+<form #f="ngForm">
+  <div class="inline-flex">
+    <span class="p-float-label flex-1" style="margin-right: 1em;">
+      <input id="mat" pInputText class="p-inputtext-sm" ngModel name="matricule" required/>
+      <label htmlfor="mat">Matrícula</label>
+    </span>
+    <span class="p-float-label flex-1" style="margin-right: 1em;">
+      <input id="name" pInputText class="p-inputtext-sm" ngModel name="name" required>
+      <label htmlfor="name">Nome</label>
+    </span>
+    <span class="p-float-label flex-1" style="margin-right: 1em;">
+      <input id="email" pInputText class="p-inputtext-sm" ngModel name="email" required email>
+      <label htmlfor="email">E-mail</label>
+    </span>
+    <p-button [disabled]="!f.valid"  (click)="onSubmitStudent(f)" size="small" label="Adicionar"></p-button>
+  </div>
+</form>
+
+<hr>
+<!--Lista de Studantes-->
+<p-table  [value]="studentsList" [tableStyle]="{'min-with':'30rem'}"  >
+  <ng-template class="p-datatable-sm" pTemplate="header">
+    <tr>
+      <th>Matrícula</th>
+      <th>Nome</th>
+      <th>E-mail</th>
+      <th>Posts</th>
+    </tr>
+  </ng-template >
+  <ng-template pTemplate="body" let-student>
+    <tr>
+      <td>{{student.matricule}}</td>
+      <td>{{student.name}}</td>
+      <td>{{student.email}}</td>
+      <td>
+        <p-button [text]="true" routerLink="/posts/{{student.id}}">Ver posts</p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+<p-toast></p-toast>

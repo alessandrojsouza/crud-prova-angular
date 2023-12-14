@@ -1,0 +1,42 @@
+
+<h1>Cadastro de Postes</h1>
+<form #form="ngForm">
+  <div class="inline-flex">
+    <span class="p-float-label flex-1" style="margin-right: 1em;">
+      <input id="title" pInputText class="p-inputtext-sm" ngModel name="title" required/>
+      <label htmlfor="title">Titulo</label>
+    </span>
+    <span class="p-float-label flex-1" style="margin-right: 1em;">
+      <input id="description" pInputText class="p-inputtext-sm" ngModel name="description" required>
+      <label htmlfor="description">Descrição</label>
+    </span>
+    <p-button [disabled]="!form.valid"  (click)="onSubmitCreate(form)" size="small" label="Adicionar"></p-button>
+  </div>
+</form>
+
+<hr>
+<h2>Lista de <i>Posts</i>  (Estudante - {{studentId}}) </h2>
+<br>
+<p-table [value]="postList" [tableStyle]="{'min-with':'30rem'}">
+  <ng-template class="p-datatable-sm" pTemplate="header">
+    <tr>
+      <th>Id</th>
+      <th>Titulo</th>
+      <th>Conteúdo</th>
+      <th>Data data postagem</th>
+      <th>Ação</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-post>
+    <tr>
+      <td>{{post.id}}</td>
+      <td>{{post.title}}</td>
+      <td>{{post.description}}</td>
+      <td>{{post.dateTime | date:"dd/MM/yyyy HH:mm:ss"}}</td>
+      <td>
+        <p-button severity="danger" size="small" (click)="post.id !== undefined && onClickDelete(post.id)">Excluir</p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+<p-toast></p-toast>
